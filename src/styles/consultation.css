@@ -1,0 +1,133 @@
+
+.indicators-intro { padding-block: 23px 31px; background: #fdfbf9; }
+.indicators-intro .container, .consultation-layout { width: min(1440px, calc(100% - 96px)); }
+.indicators-intro h1 { font-size: 48px; margin-top: 8px; }
+.indicators-intro-row > div > p:not(.eyebrow) { margin-top: 10px; color: #806b8b; }
+.public-access-label { display: inline-flex; gap: 8px; align-items: center; font-size: 11px; color: #8c7299; border: 1px solid #e7dcec; border-radius: 30px; padding: 9px 14px; background: #faf5fc; }
+.public-access-label svg { color: #a07db1; }
+.consultation-area { background: #f7f4f9; border-block: 1px solid #eee6f2; padding-block: 30px 38px; }
+.consultation-layout { display: grid; grid-template-columns: 248px minmax(0, 1fr); gap: 28px; align-items: start; }
+.consultation-main { min-width: 0; }
+.indicator-sidebar { position: sticky; top: 105px; }
+.indicator-sidebar-title { padding: 2px 13px 18px; }
+.indicator-sidebar-title > span { display: block; font-size: 8px; letter-spacing: 1.7px; font-weight: 650; color: #a48ab1; }
+.indicator-sidebar-title h2 { font-family: 'DM Sans', 'Segoe UI', sans-serif; font-size: 16px; letter-spacing: -.2px; color: #6b467d; font-weight: 600; margin-top: 8px; line-height: 1.3; }
+.indicator-nav { display: grid; grid-template-columns: 1fr; flex-direction: column; align-items: stretch; gap: 5px; width: 100%; padding: 0; margin: 0; border: 0; }
+.indicator-nav > a { --nav-accent: #805096; --nav-soft: #ecdef3; display: flex; gap: 11px; align-items: center; min-height: 53px; padding: 9px 12px; border: 1px solid transparent; border-radius: 7px; background: transparent; text-decoration: none; color: #887095; font-size: 12px; font-weight: 500; transition: background .15s, border-color .15s; }
+.indicator-nav > a[data-topic='saude'] { --nav-accent: #a74b7a; --nav-soft: #fae3ef; }
+.indicator-nav > a[data-topic='educacao'] { --nav-accent: #9b5a33; --nav-soft: #fff0df; }
+.indicator-nav > a[data-topic='territorio'] { --nav-accent: #387763; --nav-soft: #e0f0e8; }
+.indicator-nav > a[data-topic='participacao'] { --nav-accent: #8550a2; --nav-soft: #ecdef8; }
+.indicator-nav > a[data-topic='politicas'] { --nav-accent: #456d9a; --nav-soft: #e4effc; }
+.indicator-nav > a:hover { background: #fff; color: var(--nav-accent); }
+.indicator-sidebar .indicator-nav > a[aria-current='page'] { color: var(--nav-accent); background: #fff; border-color: #e1d4e9; font-weight: 650; box-shadow: 0 3px 10px #4a255305; }
+.indicator-nav-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; color: var(--nav-accent, #8859a0); background: var(--nav-soft, #eee1f4); }
+.indicator-nav > a > span:last-child { flex: 1; line-height: 1.5; }
+.indicator-nav small { display: block; font-size: 8px; color: #ab8eb9; font-weight: 450; margin-top: 2px; }
+.indicator-sidebar-help { margin: 27px 3px 0; padding: 20px 17px; background: linear-gradient(135deg, #eee4f4, #f7f1fa); border: 1px solid #e8dced; border-radius: 9px; }
+.sidebar-help-icon { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 1px solid #dcc8e6; border-radius: 50%; color: #a17ab3; }
+.indicator-sidebar-help h3 { font-size: 12px; font-weight: 600; margin-top: 14px; color: #80578e; }
+.indicator-sidebar-help p { font-size: 10px; line-height: 1.9; color: #8e769b; margin-top: 8px; }
+.indicator-sidebar-help a { display: inline-flex; align-items: center; gap: 10px; color: #886094; font-size: 10px; font-weight: 600; text-decoration: none; margin-top: 15px; }
+.indicator-mobile-navigation { display: none; }
+.consultation-main .dashboard-section { --report-accent: #865299; --report-tint: #f1e8f6; background: none; border: 0; padding: 0; }
+.consultation-main .dashboard-section[data-topic='saude'] { --report-accent: #a64b7a; --report-tint: #fbeaf2; }
+.consultation-main .dashboard-section[data-topic='educacao'] { --report-accent: #9c603b; --report-tint: #fff2e4; }
+.consultation-main .dashboard-section[data-topic='territorio'] { --report-accent: #397863; --report-tint: #e8f4ee; }
+.consultation-main .dashboard-section[data-topic='participacao'] { --report-accent: #8752a7; --report-tint: #f1e9f9; }
+.consultation-main .dashboard-section[data-topic='politicas'] { --report-accent: #4d73a3; --report-tint: #eaf2fd; }
+.consultation-main .dashboard-section > .container { width: 100%; margin: 0; }
+.consultation-main .report-shell { background: #fff; border: 1px solid #e3d8eb; border-radius: 12px; box-shadow: 0 8px 27px #3b1b4f04; }
+.consultation-main .report-toolbar { padding: 22px 25px; border-color: #eee7f3; align-items: center; gap: 20px; }
+.consultation-main .report-icon { width: 47px; height: 47px; border-radius: 12px; background: var(--report-tint); color: var(--report-accent); }
+.consultation-main .report-heading { gap: 14px; }
+.consultation-main .report-heading h2 { font-family: var(--serif); font-weight: 500; font-size: 25px; letter-spacing: -.4px; color: #6a427b; line-height: 1.1; margin: 5px 0 0; }
+.consultation-main .report-heading .report-kicker { display: block; font-size: 7px; letter-spacing: 1.3px; color: #ab8dba; margin: 0; }
+.consultation-main .report-heading div > span:last-child { margin-top: 6px; color: #a58ab1; font-size: 9px; }
+.consultation-main .status { font-size: 9px; padding: 7px 10px; background: #faf7fc; color: #9e7eae; border-color: #e7dcec; }
+.consultation-main .status--ready { color: #356653; background: #f2f8f4; border-color: #d4e6d9; }
+.consultation-main .report-empty { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 28px; text-align: left; align-items: center; justify-content: center; min-height: 420px; padding: 44px; background: radial-gradient(ellipse at 10% 60%, #f6f0fa, #fff 60%); }
+.preparation-art { width: 100%; max-width: 250px; height: auto; justify-self: center; }
+.consultation-main .preparation-copy h3 { max-width: none; font-family: var(--serif); font-size: clamp(28px, 2.5vw, 37px); line-height: 1.12; letter-spacing: -.7px; color: #855794; font-weight: 450; margin: 0; }
+.preparation-copy > p { margin-top: 15px; font-size: 12px; line-height: 1.9; color: #9678a2; max-width: 350px; }
+.preparation-copy > .text-link { font-size: 11px; color: #8b5f9d; margin-top: 20px; gap: 13px; }
+.preparation-measures { margin-top: 29px; }
+.preparation-measures > span { color: #a58ab2; font-size: 7px; letter-spacing: 1.2px; font-weight: 600; }
+.consultation-main .empty-tags { display: flex; justify-content: flex-start; gap: 7px; margin-top: 11px; }
+.consultation-main .empty-tags > span { font-size: 8px; padding: 6px 9px; border-radius: 4px; border-color: #ebdfef; background: #fcf9fd; color: #9574a2; }
+.consultation-main .report-bottom { padding: 14px 23px; font-size: 9px; border-top-color: #eee7f3; color: #9c83a8; background: #fefcff; }
+.consultation-main .data-metadata { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 19px 0; margin-top: 19px; border: 1px solid #e6ddec; background: #fcfafc; border-radius: 9px; }
+.consultation-main .data-metadata > div { padding-inline: 20px; }
+.consultation-main .data-metadata > div + div { border-left: 1px solid #e8dfed; }
+.consultation-main .data-metadata dt { font-size: 10px; font-weight: 600; color: #92709e; gap: 7px; }
+.consultation-main .data-metadata dd { margin: 7px 0 0 24px; font-size: 10px; line-height: 1.7; color: #947b9f; overflow-wrap: anywhere; }
+@media(max-width: 1150px) {
+  .indicators-intro .container, .consultation-layout { width: calc(100% - 56px); }
+  .consultation-layout { grid-template-columns: 220px minmax(0, 1fr); gap: 22px; }
+  .consultation-main .report-empty { grid-template-columns: 160px minmax(0, 1fr); gap: 16px; padding: 30px; }
+  .consultation-main .preparation-copy h3 { font-size: 30px; }
+  .consultation-main .report-heading h2 { font-size: 23px; }
+  .consultation-main .data-metadata > div { padding-inline: 13px; }
+}
+@media(max-width: 900px) {
+  .consultation-layout { grid-template-columns: 195px minmax(0, 1fr); gap: 17px; }
+  .indicator-nav > a { padding-inline: 9px; font-size: 11px; gap: 8px; }
+  .consultation-main .report-empty { display: flex; flex-direction: column; gap: 15px; text-align: center; padding: 28px 23px; min-height: 440px; }
+  .preparation-art { max-width: 155px; }
+  .preparation-copy > p { margin-inline: auto; }
+  .consultation-main .empty-tags { justify-content: center; }
+  .preparation-measures { margin-top: 22px; }
+  .consultation-main .report-toolbar { padding: 18px 17px; gap: 10px; }
+  .consultation-main .report-heading h2 { font-size: 21px; }
+  .consultation-main .report-icon { display: none; }
+  .consultation-main .status { font-size: 8px; padding-inline: 7px; }
+  .consultation-main .data-metadata { grid-template-columns: 1fr; padding-block: 0; }
+  .consultation-main .data-metadata > div { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 13px; padding: 13px 16px; }
+  .consultation-main .data-metadata > div + div { border-left: 0; border-top: 1px solid #e8dfed; }
+  .consultation-main .data-metadata dd { margin: 0; }
+}
+@media(max-width: 700px) {
+  .indicators-intro .container, .consultation-layout { width: calc(100% - 40px); }
+  .indicators-intro { padding-block: 19px 24px; }
+  .indicators-intro h1 { font-size: 42px; }
+  .indicators-intro-row { flex-direction: row; align-items: center; gap: 15px; }
+  .indicators-intro-row > div > p:not(.eyebrow) { font-size: 12px; max-width: 275px; }
+  .public-access-label { display: none; }
+  .consultation-area { padding-block: 19px 28px; }
+  .consultation-layout { grid-template-columns: 1fr; gap: 20px; }
+  .indicator-sidebar { position: relative; top: auto; z-index: 4; }
+  .indicator-desktop-navigation, .indicator-sidebar-help { display: none; }
+  .indicator-mobile-navigation { display: block; }
+  .mobile-selection-label { display: block; color: #a081ae; font-size: 8px; letter-spacing: 1.4px; font-weight: 650; margin: 0 0 9px 2px; }
+  .indicator-mobile-select { position: relative; }
+  .indicator-mobile-select > summary { display: flex; align-items: center; gap: 11px; min-height: 60px; padding: 12px 15px; list-style: none; background: #fff; border: 1px solid #d8c1e5; border-radius: 8px; box-shadow: 0 3px 10px #55236504; cursor: pointer; color: #805191; font-size: 14px; font-weight: 600; }
+  .indicator-mobile-select > summary::-webkit-details-marker { display: none; }
+  .indicator-mobile-select > summary > span:nth-child(2) { flex: 1; }
+  .mobile-select-chevron { color: #ad89be; transition: transform .18s; }
+  .indicator-mobile-select[open] .mobile-select-chevron { transform: rotate(180deg); }
+  .indicator-mobile-select > .indicator-nav { position: absolute; top: calc(100% + 7px); left: 0; right: 0; display: grid; grid-template-columns: 1fr; gap: 3px; width: 100%; margin: 0; padding: 8px; background: #fff; border: 1px solid #e0cfe8; border-radius: 9px; box-shadow: 0 14px 28px #4d285c17; max-height: 380px; overflow-y: auto; }
+  .indicator-mobile-select .indicator-nav > a { font-size: 12px; min-height: 49px; padding: 8px 10px; gap: 12px; }
+  .indicator-mobile-select .indicator-nav small { font-size: 8px; }
+  .consultation-main .report-toolbar { padding: 18px 15px; }
+  .consultation-main .report-heading h2 { font-size: 23px; }
+  .consultation-main .report-heading .report-kicker { font-size: 6px; letter-spacing: 1px; }
+  .consultation-main .report-heading div > span:last-child { font-size: 8px; }
+  .consultation-main .report-tools { gap: 7px; }
+  .consultation-main .report-empty { min-height: 420px; padding: 29px 21px 31px; gap: 15px; }
+  .preparation-art { max-width: 160px; }
+  .consultation-main .preparation-copy h3 { font-size: 31px; }
+  .preparation-copy > p { font-size: 11px; margin-top: 13px; }
+  .preparation-copy > .text-link { margin-top: 17px; font-size: 10px; }
+  .preparation-measures { margin-top: 25px; }
+  .preparation-measures > span { font-size: 6px; letter-spacing: 1px; }
+  .consultation-main .empty-tags > span { font-size: 8px; }
+  .consultation-main .report-bottom { padding: 12px 14px; font-size: 8px; }
+  .consultation-main .data-metadata { margin-top: 15px; }
+}
+.indicator-nav > a { color: #7b6088; }
+.indicator-nav small { color: #896599; }
+.indicator-sidebar-help p, .preparation-copy > p { color: #80648c; }
+.consultation-main .status:not(.status--ready) { color: #805b90; }
+.consultation-main .data-metadata dd, .consultation-main .report-bottom, .consultation-main .empty-tags > span { color: #81668d; }
+.consultation-main .report-heading div > span:last-child { color: #856a92; }
+@media(prefers-reduced-motion: reduce) { .indicator-nav > a, .mobile-select-chevron { transition: none; } }
