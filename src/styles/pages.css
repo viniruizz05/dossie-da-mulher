@@ -1,4 +1,4 @@
-
+/* Navegação entre documentos e página dedicada à consulta. */
 nav > a[aria-current='page']:not(.nav-cta) { color: #653375; font-weight: 700; }
 nav > .nav-cta[aria-current='page'] { background: #eee0f3; color: #6b3b7f; box-shadow: none; border: 1px solid #d7bbdf; }
 .indicators-intro { background: #fdfbf9; padding-block: 26px 29px; }
@@ -22,7 +22,7 @@ nav > .nav-cta[aria-current='page'] { background: #eee0f3; color: #6b3b7f; box-s
 .indicators-page .report-empty h3 { max-width: 600px; }
 .indicators-page .methodology-section { border-top: 0; }
 
-
+/* Cartões de temas: cores diferentes para facilitar o reconhecimento. */
 .topic-catalog { padding-block: 40px 55px; background: #fdfbf9; }
 .topic-catalog .section-title-row { align-items: center; margin-bottom: 25px; }
 .topic-catalog .eyebrow { color: #9c489c; font-size: 9px; letter-spacing: 1.2px; }

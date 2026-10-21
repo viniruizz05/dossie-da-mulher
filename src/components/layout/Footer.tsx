@@ -1,4 +1,4 @@
-import { Brand } from './Header';
+import { Brand } from './Brand';
 
 export function Footer() {
   return (

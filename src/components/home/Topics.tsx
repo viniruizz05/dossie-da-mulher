@@ -1,5 +1,5 @@
-import { topics } from '../config/site';
-import { Icon } from './Icon';
+import { topics } from '../../config/site';
+import { Icon } from '../ui/Icon';
 import { ThemeMeasures } from './ThemeMeasures';
 
 export function Topics() {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Icon } from './Icon';
+import { Icon } from '../ui/Icon';
 
 export function ThemeMeasures({ id, title, measures }: { id: string; title: string; measures: readonly string[] }) {
   const [open, setOpen] = useState(false);

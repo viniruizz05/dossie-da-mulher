@@ -1,44 +1,127 @@
 # Dossiê da Mulher Itaquaquecetubense
 
-Portal público de indicadores para a Secretaria da Mulher de Itaquaquecetuba, desenvolvido com React, TypeScript, Vite e CSS.
+Portal público de indicadores da **Secretaria da Mulher** da Prefeitura de Itaquaquecetuba. Reúne, em uma consulta única, dados sobre violência contra a mulher, medidas protetivas e rede de atendimento, apresentados por tema a partir de um relatório em Power BI.
 
-## Páginas
+> **Status:** versão de apresentação. O relatório oficial ainda depende da validação das fontes pelas equipes responsáveis. Enquanto isso, o portal exibe um estado de preparação e nenhum número demonstrativo é apresentado como dado oficial.
 
-- **Início** (`index.html`): apresentação e seis cartões temáticos.
-- **Indicadores** (`indicadores.html`): consulta ao Power BI, seleção de tema e informações sobre os dados.
+## Sumário
 
-Os links são relativos e funcionam no servidor local e no caminho do GitHub Pages. Os cartões abrem a página de consulta com o tema selecionado. Essa seleção identifica o contexto; quando há apenas um relatório geral, seus filtros devem ser usados dentro do Power BI.
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias](#tecnologias)
+- [Começando](#começando)
+- [Scripts](#scripts)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Configuração](#configuração)
+- [Build e publicação](#build-e-publicação)
+- [Pontos de atenção](#pontos-de-atenção)
 
-## Executar
+## Funcionalidades
 
-Requer Node.js 22.12 ou superior.
+- **Duas páginas, hospedagem estática:** início (`index.html`) com seis cartões temáticos e consulta (`indicadores.html`) com o painel e as informações sobre os dados.
+- **Consulta por tema:** cada cartão abre a consulta com o tema escolhido (`indicadores.html?tema=saude`). Um tema desconhecido exibe o panorama geral.
+- **Painel Power BI incorporado:** aceita um relatório geral e, opcionalmente, um relatório por tema, com tela cheia e link para abrir em outra aba. Somente URLs `https` em domínios `powerbi.com` são aceitas; qualquer outro valor é rejeitado com aviso.
+- **Transparência:** seção "Sobre os dados" com fontes, atualização, privacidade e cuidados de interpretação.
+- **Acessibilidade:** link "Pular para o conteúdo", foco visível em todos os elementos interativos, menu que fecha com `Esc` e respeito a `prefers-reduced-motion`.
+- **Sem backend:** não há autenticação, cadastro de indicadores, cookies próprios nem ferramentas de rastreamento.
+
+## Tecnologias
+
+| Camada | Escolha |
+| --- | --- |
+| Interface | React 19, renderizado no cliente |
+| Linguagem | TypeScript 5.9 em modo `strict` |
+| Build | Vite 8 (multipágina, `base: './'`) |
+| Estilos | CSS puro, sem framework |
+| Pacotes | pnpm 10 |
+| Publicação | GitHub Pages, a partir de `docs/` |
+
+## Começando
+
+Requisitos: **Node.js 22.12 ou superior** e **pnpm** (o projeto usa `pnpm-lock.yaml`; com o Corepack, `corepack enable` já seleciona a versão correta).
 
 ```sh
-npm install
-npm run dev
+git clone https://github.com/viniruizz05/dossie.git
+cd dossie
+pnpm install
+pnpm dev
 ```
 
-## Verificar e compilar
+O servidor de desenvolvimento fica em http://localhost:5173/.
 
-```sh
-npm run check
-npm run build
+## Scripts
+
+| Comando | O que faz |
+| --- | --- |
+| `pnpm dev` | Servidor de desenvolvimento com recarga automática. |
+| `pnpm check` | Verificação de tipos com `tsc --noEmit`. |
+| `pnpm build` | Verifica os tipos e gera o site estático em `dist/`. |
+| `pnpm build:pages` | Executa o build e substitui o conteúdo de `docs/` pelo de `dist/`. |
+| `pnpm preview` | Serve `dist/` com o Vite em http://localhost:4173/. |
+| `pnpm serve` | Serve `dist/` sem dependências externas, usando apenas o Node. |
+
+No Windows, o arquivo `abrir-site.cmd` inicia esse servidor local e abre o navegador. Ele exige que o Node.js esteja instalado e que `pnpm build` já tenha sido executado.
+
+## Estrutura do projeto
+
+```
+src/
+  main.tsx            ponto de entrada; escolhe a página pelo atributo data-page do HTML
+  App.tsx             estrutura comum (cabeçalho, rodapé) e seleção da página
+  pages/              composição de cada página (HomePage, IndicatorsPage)
+  components/
+    layout/           Brand, Header, Footer
+    home/             seções da página inicial
+    indicators/       painel Power BI, navegação por tema e "Sobre os dados"
+    ui/               componentes de uso geral (Icon)
+  config/site.ts      conteúdo do site, temas e configuração do Power BI
+  lib/                lógica sem interface (validação da URL do Power BI)
+  hooks/              usePageMotion, useScrollToHash
+  styles/             folhas de estilo
+public/               arquivos estáticos copiados para o build
+scripts/              servidor local, abertura do site e publicação em docs/
+docs/                 build publicado no GitHub Pages (gerado; não editar à mão)
 ```
 
-A compilação gera o site estático em `dist/`. Para visualizar essa versão localmente, execute `node serve.cjs` e acesse http://localhost:4173/.
+## Configuração
 
-## Configurar o Power BI
+Todo o conteúdo editável fica em [`src/config/site.ts`](src/config/site.ts). Preencha apenas com informações validadas pela equipe responsável.
 
-Edite `src/config/site.ts` e preencha `powerBIConfig.embedUrl` com a URL HTTPS oficial de incorporação. No mesmo arquivo, configure as fontes e a data de atualização dos dados.
+### Informações do site
 
-Para relatórios separados por tema, informe as URLs em `powerBIConfig.reportsByTopic`, usando os identificadores definidos em `topics`, por exemplo `saude` ou `violencia`. Se não houver URL específica, será exibido o relatório geral com essa indicação. Sem URL configurada, a página apresenta o estado de preparação.
+| Campo (`siteConfig`) | Uso |
+| --- | --- |
+| `source` | Fonte dos dados exibida no painel. |
+| `referencePeriod` | Período de referência dos dados. |
+| `lastUpdated` | Data oficial de atualização dos dados, no formato `AAAA-MM-DD`. Não é a data de publicação do site. |
 
-Enquanto o relatório não estiver disponível, o portal exibe uma mensagem de preparação. A atualização dos dados deve ser configurada no Power BI, conforme a fonte utilizada. O site não implementa autenticação nem cadastro de indicadores.
+### Relatório Power BI
 
-## GitHub Pages
+1. Em `powerBIConfig.embedUrl`, informe a URL HTTPS oficial de incorporação. O relatório substitui automaticamente o estado de preparação.
+2. Opcionalmente, informe uma URL por tema em `powerBIConfig.reportsByTopic`, usando os identificadores abaixo. Sem URL específica, o tema exibe o relatório geral com essa indicação.
 
-Os arquivos de publicação estão em `docs/`. Em Settings → Pages, selecione **Deploy from a branch → main → /docs → Save**.
+| Identificador | Tema |
+| --- | --- |
+| `violencia` | Violência e proteção |
+| `saude` | Saúde e cuidado |
+| `educacao` | Educação e trabalho |
+| `territorio` | Território e população |
+| `participacao` | Participação e igualdade |
+| `politicas` | Políticas e atendimento |
 
-Ao atualizar o código, execute `npm run build`, copie o conteúdo de `dist/` para `docs/`, mantenha `docs/.nojekyll` e envie as alterações.
+A atualização dos dados é configurada no próprio Power BI, conforme a fonte de origem, e não acontece em tempo real. Quando o relatório geral é usado para um tema, os filtros internos do Power BI é que delimitam a consulta.
 
+## Build e publicação
 
+O site é estático e usa caminhos relativos, então funciona tanto na raiz de um servidor quanto em um subcaminho, como o do GitHub Pages.
+
+1. Em **Settings → Pages**, selecione **Deploy from a branch → `main` → `/docs`**.
+2. A cada atualização, execute `pnpm build:pages` e envie as alterações, incluindo a pasta `docs/`.
+
+O comando compila o projeto e recria `docs/` a partir de `dist/`. O arquivo `.nojekyll`, que evita o processamento do Jekyll, vem de `public/`.
+
+## Pontos de atenção
+
+- **`docs/` é versionado:** como o GitHub Pages publica essa pasta, o build fica no repositório. Se `pnpm build:pages` não for executado antes do envio, o site publicado fica defasado em relação ao código.
+- **Fontes tipográficas:** DM Sans e Newsreader são carregadas do Google Fonts, o que gera uma requisição externa a cada visita.
+- **Relatório incorporado:** o conteúdo do Power BI é servido pela Microsoft e segue as políticas dela, inclusive de cookies.
+- **Licença:** o repositório ainda não define uma licença. Consulte a Secretaria da Mulher antes de reutilizar o código ou os materiais.

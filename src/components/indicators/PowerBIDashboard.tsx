@@ -1,19 +1,16 @@
 import { useRef, useState } from 'react';
-import { powerBIConfig, siteConfig, topics } from '../config/site';
-import { Icon } from './Icon';
+import { findTopic, powerBIConfig, siteConfig } from '../../config/site';
+import { resolveEmbedUrl } from '../../lib/powerbi';
+import { Icon } from '../ui/Icon';
 import { ReportPreparation } from './ReportPreparation';
 
 export function PowerBIDashboard({ topicId }: { topicId?: string }) {
-  const topic = topics.find(item => item.id === topicId);
+  const topic = findTopic(topicId);
   const frame = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState('');
   const thematicUrl = topic ? powerBIConfig.reportsByTopic[topic.id]?.trim() : '';
   const raw = thematicUrl || powerBIConfig.embedUrl.trim();
-  let embedUrl = '';
-  try {
-    const url = new URL(raw);
-    if (url.protocol === 'https:' && (url.hostname === 'app.powerbi.com' || url.hostname.endsWith('.powerbi.com'))) embedUrl = url.href;
-  } catch {  }
+  const embedUrl = resolveEmbedUrl(raw);
 
   const expand = async () => {
     try { await frame.current?.requestFullscreen(); }

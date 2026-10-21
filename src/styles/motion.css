@@ -1,11 +1,11 @@
-
+/* Movimento progressivo: sem dependências e sem ocultar conteúdo antes do JavaScript. */
 :root { --motion-ease: cubic-bezier(.2, .7, .25, 1); }
 @media (prefers-reduced-motion: no-preference) {
   .hero-copy .hero-eyebrow { animation: motion-enter .5s var(--motion-ease) both; }
   .hero-copy h1 { animation: motion-enter .7s var(--motion-ease) .08s both; }
   .hero-copy .hero-description { animation: motion-enter .65s var(--motion-ease) .16s both; }
   .hero-copy .hero-actions { animation: motion-enter .6s var(--motion-ease) .23s both; }
-  .hero-artwork { animation: motion-art .95s var(--motion-ease) .12s both; }
+  .hero-artwork img { animation: motion-art .95s var(--motion-ease) .12s both; }
   .indicators-intro-row { animation: motion-enter .6s var(--motion-ease) both; }
   .indicator-sidebar { animation: motion-enter .55s var(--motion-ease) .06s both; }
   .consultation-main { animation: motion-enter .65s var(--motion-ease) .12s both; }

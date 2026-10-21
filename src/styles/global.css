@@ -44,7 +44,7 @@ h2 span { color: #8b7198; }
 .skip-link { position: fixed; top: 12px; left: 12px; z-index: 100; background: #fff; padding: 14px 20px; transform: translateY(-180%); border: 2px solid var(--purple); }
 .skip-link:focus { transform: translateY(0); }
 
-
+/* Navegação institucional */
 .institutional-bar { background: #201527; color: #c7b6d0; font-size: 10px; }
 .institutional-bar > .container { display: flex; justify-content: space-between; gap: 20px; padding-block: 9px; }
 .institutional-divider { padding-inline: 12px; color: #81658e; }
@@ -53,7 +53,6 @@ h2 span { color: #8b7198; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 83px; gap: 25px; }
 .brand { display: inline-flex; gap: 12px; align-items: center; text-decoration: none; flex-shrink: 0; }
 .brand-mark { position: relative; display: grid; place-items: center; height: 44px; width: 44px; background: var(--plum); color: #ecdeef; border-radius: 12px 12px 12px 2px; font-family: var(--serif); font-size: 27px; letter-spacing: -2px; padding-right: 4px; }
-.brand-mark > span { position: absolute; right: 5px; bottom: 8px; color: #b793c7; font-family: Georgia, serif; }
 .brand strong { display: block; font-family: var(--serif); font-size: 23px; font-weight: 550; letter-spacing: -.5px; }
 .brand small { display: block; color: #85768e; font-size: 8px; letter-spacing: 2.3px; margin-top: 4px; }
 nav { display: flex; align-items: center; gap: 27px; }
@@ -62,7 +61,7 @@ nav > a:hover { color: var(--plum); }
 nav > .nav-cta { display: flex; align-items: center; gap: 15px; padding: 13px 18px; border: 1px solid #d8c9e0; border-radius: 4px; color: var(--plum); font-weight: 650; }
 .menu-button { display: none; place-items: center; padding: 9px; border: 1px solid var(--line); border-radius: 4px; background: transparent; color: var(--plum); }
 
-
+/* Abertura editorial e ilustração vetorial própria */
 .hero { color: #fff; background: radial-gradient(ellipse at 95% 30%, #51315e 0%, #301e3b 48%, #25182e 100%); overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 55px; padding-block: 65px 58px; min-height: 635px; }
 .hero-copy { position: relative; z-index: 1; }
@@ -91,7 +90,7 @@ nav > .nav-cta { display: flex; align-items: center; gap: 15px; padding: 13px 18
 .presentation-notice strong { font-weight: 650; }
 .presentation-notice > .container > span { font-size: 7px; letter-spacing: 1.3px; white-space: nowrap; }
 
-
+/* Eixo central: composição assimétrica, sem cartões repetidos */
 .violence-section { background: #fff; }
 .focus-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 100px; align-items: start; }
 .focus-intro h2 { margin-top: 19px; font-size: clamp(38px, 3.5vw, 48px); line-height: 1.08; }
@@ -108,7 +107,7 @@ nav > .nav-cta { display: flex; align-items: center; gap: 15px; padding: 13px 18
 .focus-item p { font-size: 12px; line-height: 1.8; color: #8a7d92; margin-top: 8px; max-width: 340px; }
 .focus-item-icon { color: #a58bb3; background: #f7f2f9; width: 47px; height: 47px; border-radius: 50%; display: grid; place-items: center; }
 
-
+/* Painel: ambiente neutro para os dados */
 .dashboard-section { background: #f0f3f1; border-block: 1px solid #e4eae5; }
 .dashboard-section .eyebrow { color: var(--green); }
 .dashboard-section h2 { color: #2b463b; }
@@ -154,7 +153,7 @@ nav > .nav-cta { display: flex; align-items: center; gap: 15px; padding: 13px 18
 .data-metadata dt svg { color: #93a898; }
 .data-metadata dd { margin: 8px 0 0 25px; font-size: 10px; line-height: 1.7; color: #8e9c92; }
 
-
+/* Eixos: navegação lateral e painel de leitura */
 .topics-section { background: #fff; }
 .topics-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; }
 .topic-list { display: flex; flex-direction: column; gap: 0; }
@@ -179,7 +178,7 @@ nav > .nav-cta { display: flex; align-items: center; gap: 15px; padding: 13px 18
 .topic-note svg { margin-top: 2px; }
 .topic-panel > .text-link { font-size: 11px; margin-top: auto; padding-top: 24px; }
 
-
+/* Projeto: faixa de contexto com numeração editorial */
 .about-section { background: #faf7f3; border-block: 1px solid #eee7dc; }
 .about-heading { display: grid; grid-template-columns: .75fr 2fr; gap: 55px; }
 .about-heading > .eyebrow { color: #9c8867; margin-top: 8px; }
@@ -192,7 +191,7 @@ nav > .nav-cta { display: flex; align-items: center; gap: 15px; padding: 13px 18
 .principles h3 { color: #766044; font-size: 16px; font-weight: 550; }
 .principles p { font-size: 12px; color: #a08f77; line-height: 1.9; margin-top: 10px; max-width: 315px; }
 
-
+/* Leitura dos dados */
 .methodology-section { background: #fff; }
 .methodology-layout { display: grid; grid-template-columns: 1fr 1.17fr; gap: 95px; }
 .methodology-intro h2 { margin-top: 17px; }
@@ -214,7 +213,7 @@ nav > .nav-cta { display: flex; align-items: center; gap: 15px; padding: 13px 18
 .closing-section h2 em { color: #779581; font-weight: 400; }
 .closing-section .button { background: #476951; color: #fff; font-size: 12px; white-space: nowrap; }
 
-
+/* Rodapé */
 .footer { background: #23182b; color: #e8dced; }
 .footer-main { display: grid; grid-template-columns: 1.3fr .8fr 1fr; gap: 50px; padding-block: 55px 42px; }
 .brand--light .brand-mark { background: #3e2a4b; color: #e4ccec; border: 1px solid #644575; }

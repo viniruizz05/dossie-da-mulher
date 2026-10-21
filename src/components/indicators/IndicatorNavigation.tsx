@@ -1,5 +1,5 @@
-import { topics } from '../config/site';
-import { Icon } from './Icon';
+import { findTopic, topics } from '../../config/site';
+import { Icon } from '../ui/Icon';
 
 function TopicLinks({ topicId }: { topicId?: string }) {
   return (
@@ -19,7 +19,7 @@ function TopicLinks({ topicId }: { topicId?: string }) {
 }
 
 export function IndicatorNavigation({ topicId }: { topicId?: string }) {
-  const selected = topics.find(topic => topic.id === topicId);
+  const selected = findTopic(topicId);
   return (
     <aside className="indicator-sidebar" aria-label="Seleção de temas">
       <div className="indicator-desktop-navigation">

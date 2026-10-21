@@ -1,4 +1,4 @@
-import { Icon } from './Icon';
+import { Icon } from '../ui/Icon';
 
 const questions = [
   { id: 'sobre', question: 'Sobre o projeto', answer: 'Portal público da proposta do Dossiê da Mulher Itaquaquecetubense, com foco na violência contra a mulher e na rede de proteção. Os temas e indicadores dependem da validação das bases oficiais.' },
@@ -7,7 +7,7 @@ const questions = [
   { id: 'privacidade', question: 'Privacidade e interpretação', answer: 'A proposta é publicar dados agregados, sem identificação de pessoas. Ao comparar períodos ou territórios, considere população, cobertura e diferenças de registro. Mais registros não significam, necessariamente, mais ocorrências.' },
 ];
 
-export function InfoSection() {
+export function MethodologySection() {
   return (
     <section id="metodologia" className="section methodology-section" aria-labelledby="methodology-title">
       <div className="container methodology-layout">

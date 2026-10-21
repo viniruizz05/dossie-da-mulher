@@ -1,4 +1,4 @@
-
+/* Hierarquia final: leitura confortável e componentes consistentes. */
 :root {
   --plum: #382043;
   --purple: #78418b;
@@ -15,7 +15,7 @@ body { font-size: 16px; }
 .header-inner { min-height: 78px; }
 .brand strong { font-size: 26px; }
 .brand small { font-size: 10px; letter-spacing: 2.1px; color: #755f81; }
-.brand-mark { width: 46px; height: 46px; border-radius: var(--radius-surface); }
+.brand-mark { width: 46px; height: 46px; border-radius: 28%; }
 .header #navigation > a { font-size: 14px; color: #624b6f; }
 .header #navigation > .nav-cta { color: #fff; padding: 13px 20px; border-radius: var(--radius-control); font-weight: 600; }
 .header #navigation > .nav-cta[aria-current='page'] { color: #633c76; }

@@ -1,4 +1,4 @@
-
+/* Interface dedicada à consulta dos indicadores. */
 .indicators-intro { padding-block: 23px 31px; background: #fdfbf9; }
 .indicators-intro .container, .consultation-layout { width: min(1440px, calc(100% - 96px)); }
 .indicators-intro h1 { font-size: 48px; margin-top: 8px; }

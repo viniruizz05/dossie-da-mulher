@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+
+// O conteúdo permanece visível se o navegador não oferecer animações de entrada.
 export function usePageMotion() {
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');

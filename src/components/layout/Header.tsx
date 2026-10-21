@@ -1,9 +1,6 @@
 import { useRef, useState } from 'react';
-import { Icon } from './Icon';
-
-export function Brand({ light = false }: { light?: boolean }) {
-  return <a href="./" className={`brand ${light ? 'brand--light' : ''}`} aria-label="Dossiê da Mulher — início"><span className="brand-mark" aria-hidden="true">dm<span>·</span></span><span><strong>Dossiê da Mulher</strong><small>ITAQUAQUECETUBA</small></span></a>;
-}
+import { Icon } from '../ui/Icon';
+import { Brand } from './Brand';
 
 export function Header({ page = 'inicio' }: { page?: 'inicio' | 'indicadores' }) {
   const [open, setOpen] = useState(false);
