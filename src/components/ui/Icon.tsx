@@ -17,6 +17,7 @@ const paths = {
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
   layers: <><path d="m12 3 10 5-10 5L2 8l10-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" /></>,
   check: <path d="m5 12 4 4L19 6" />,
+  lock: <><rect x="5" y="10" width="14" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2" /></>,
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof paths;
