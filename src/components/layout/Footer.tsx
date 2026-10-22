@@ -9,7 +9,7 @@ export function Footer() {
           <div className="footer-institution"><strong>Prefeitura de Itaquaquecetuba</strong><p>Secretaria da Mulher</p></div>
           <a className="footer-return" href="./">Página inicial</a>
         </div>
-        <div className="footer-bottom"><span>Dossiê da Mulher Itaquaquecetubense</span><span>Versão de apresentação · Relatório oficial pendente</span></div>
+        <div className="footer-bottom"><span>Dossiê da Mulher Itaquaquecetubense</span><a href="./admin.html">Área administrativa</a></div>
       </div>
     </footer>
   );
