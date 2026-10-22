@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../lib/data';
 import type { Indicator } from '../../lib/data';
-import { findTopic } from '../../config/site';
+import { findTopic, topics } from '../../config/site';
 import { Icon } from '../ui/Icon';
-import { IndicatorChart } from './IndicatorChart';
+import { IndicatorCarousel } from './IndicatorCarousel';
 
 export function IndicatorsDashboard({ topicId }: { topicId?: string }) {
   const [items, setItems] = useState<Indicator[]>([]);
@@ -25,7 +25,10 @@ export function IndicatorsDashboard({ topicId }: { topicId?: string }) {
     {loading && <div className="dashboard-empty" role="status"><span className="loading-dot" />Carregando indicadores…</div>}
     {error && <p className="form-message form-error" role="alert">{error}</p>}
     {!loading && !error && !filtered.length && <div className="dashboard-empty"><span className="empty-chart-icon"><Icon name="chart" size={32} /></span><h3>{search ? 'Nenhum indicador encontrado' : 'Os dados serão publicados aqui'}</h3><p>{search ? 'Tente outro termo ou escolha um tema diferente.' : 'A equipe responsável está preparando e validando as informações deste tema.'}</p>{topic && <a className="text-link" href="./indicadores.html">Consultar todos os temas <Icon name="arrow" size={16} /></a>}</div>}
-    <div className="indicator-cards">{filtered.map(indicator => <IndicatorChart key={indicator.id} indicator={indicator} />)}</div>
+    <div className="indicator-cards">{topics.map(group => {
+      const indicators = filtered.filter(indicator => indicator.topic === group.id);
+      return indicators.length ? <IndicatorCarousel key={group.id} title={group.title} icon={group.icon} indicators={indicators} /> : null;
+    })}</div>
     <p className="dashboard-footnote"><Icon name="info" size={16} />Dados agregados. Cada gráfico informa a fonte, a unidade e os períodos disponíveis.</p>
   </section>;
 }
