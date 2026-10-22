@@ -16,7 +16,7 @@
     "check": "tsc --noEmit",
     "start": "node scripts/serve.cjs",
     "admin:create": "node scripts/create-admin.cjs",
-    "test": "node --test scripts/api.test.cjs"
+    "test": "node --test scripts/api.test.cjs server/cloud.test.cjs server/schema.test.cjs"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -27,6 +27,7 @@
     "@types/react-dom": "^19.2.0",
     "typescript": "^5.9.3",
     "vite": "^8.0.0",
-    "@vitejs/plugin-react": "^6.0.0"
+    "@vitejs/plugin-react": "^6.0.0",
+    "@electric-sql/pglite": "0.5.11"
   }
 }

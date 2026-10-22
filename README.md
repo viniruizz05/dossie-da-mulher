@@ -57,29 +57,17 @@ pnpm build
 pnpm test
 ```
 
-Os testes usam um banco temporário e dados sintéticos, verificando autenticação, proteção de escrita, rascunhos, publicação, persistência, validação, conflitos, retirada e exclusão. Execute o build antes dos testes.
+Os testes usam bancos temporários, PostgreSQL local com autenticação simulada e um provedor HTTP simulado. Verificam autenticação, proteção de escrita, rascunhos, publicação, persistência, validação, conflitos, retirada e exclusão. Não substituem a conferência no Supabase e na Vercel reais. Execute o build antes dos testes.
 
 ## Dados e hospedagem
 
-O servidor Node usa SQLite em `data/dossie.sqlite`. Contas, hashes de senha, sessões e indicadores ficam nesse arquivo, fora dos diretórios públicos. `DATA_DIR` permite escolher outro diretório persistente. **Não envie `data/`, arquivos SQLite, senhas ou `.env` ao GitHub.**
+A versão em nuvem utiliza Vercel para a interface e API, e Supabase para autenticação e dados. Consulte [DEPLOYMENT.md](DEPLOYMENT.md) para configurar o projeto, autorizar responsáveis e verificar a publicação. A configuração real do Supabase e as verificações no ambiente publicado ainda são necessárias.
 
-Para publicação, será necessário um servidor Node 24+ com disco persistente e HTTPS. O GitHub armazena o código; **GitHub Pages sozinho não executa o login nem o banco de dados**. Não use o disco temporário de uma função serverless para esse SQLite. A hospedagem ainda precisa ser definida.
+A API pública entrega somente indicadores publicados. Rascunhos e alterações exigem conta editorial autorizada; as permissões também são verificadas no banco por RLS. Credenciais de demonstração e o banco local não são enviados à nuvem. Cookies de sessão em nuvem duram no máximo uma hora e exigem novo login ao expirar.
 
-Variáveis de produção:
+Sem SUPABASE_URL, o servidor local continua usando SQLite em `data/dossie.sqlite`, com sessões de oito horas. O comando de criação de conta descrito acima é exclusivo desse modo local. Não envie `data/`, arquivos SQLite, senhas ou `.env` ao GitHub. A função da Vercel nunca usa o SQLite como alternativa.
 
-| Variável | Uso |
-| --- | --- |
-| `NODE_ENV=production` | Ativa cookies de sessão Secure e exige origem HTTPS. |
-| `APP_ORIGIN=https://seu-dominio` | Origem pública exata, sem barra final, usada para proteger as gravações. |
-| `HOST=0.0.0.0` | Escuta na interface da hospedagem, atrás de proxy HTTPS. Localmente, o padrão é `127.0.0.1`. |
-| `PORT` | Porta do servidor, padrão 4173. |
-| `DATA_DIR` | Caminho para o volume persistente do banco. |
-
-Execute o build e inicie com `pnpm start`. O servidor entrega a interface e a API na mesma origem. Sessões duram oito horas; senhas usam scrypt com salt individual; gravações exigem sessão, origem autorizada e token CSRF. O login limita tentativas por endereço de conexão; atrás de um proxy, a proteção pode agrupar os visitantes no endereço do proxy. Configure limites adicionais na infraestrutura quando a hospedagem for definida.
-
-Faça backup da pasta `data/` com o servidor parado, incluindo os arquivos auxiliares SQLite. Restaure no diretório configurado em `DATA_DIR`. Não compartilhe esse backup publicamente. A recuperação de acesso é feita pelo comando de redefinição no servidor; não há envio automático de e-mails.
-
-O comando `pnpm build:pages` atualiza os arquivos compilados em `docs/` para distribuição. A aplicação completa deve ser executada pelo servidor Node, mesmo quando os arquivos dessa pasta estiverem disponíveis.
+O comando `pnpm build:pages` atualiza a interface compilada em `docs/`. GitHub Pages sozinho não executa a API nem o login.
 
 ## Estrutura
 
@@ -96,3 +84,4 @@ docs/                                    interface compilada para distribuição
 ```
 
 Cadastre apenas informações agregadas e validadas. Dados pessoais não devem ser inseridos nos campos livres. As fontes, unidades e critérios são responsabilidade da equipe que publica. O repositório não define licença de reutilização dos materiais.
+
