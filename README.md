@@ -1,135 +1,98 @@
 # Dossiê da Mulher Itaquaquecetubense
 
-Portal público de indicadores da **Secretaria da Mulher** da Prefeitura de Itaquaquecetuba. Reúne, em uma consulta única, dados sobre violência contra a mulher, medidas protetivas e rede de atendimento, apresentados por tema a partir de um relatório em Power BI.
+Portal de indicadores com consulta pública e área administrativa. Os gráficos são gerados pelo próprio site. A equipe cadastra os dados manualmente, confere uma prévia, salva rascunhos e publica quando as informações estiverem validadas.
 
-> **Status:** versão de apresentação. O relatório oficial ainda depende da validação das fontes pelas equipes responsáveis. Enquanto isso, o portal exibe um estado de preparação e nenhum número demonstrativo é apresentado como dado oficial.
+## Abrir o projeto
 
-## Sumário
+Requer **Node.js 24 ou superior**. Baixe o ZIP, extraia todos os arquivos e execute `abrir-site.cmd` no Windows. O servidor usa a compilação em `dist/` ou a versão pronta em `docs/`, sem instalar dependências para consultar o site.
 
-- [Funcionalidades](#funcionalidades)
-- [Tecnologias](#tecnologias)
-- [Começando](#começando)
-- [Scripts](#scripts)
-- [Estrutura do projeto](#estrutura-do-projeto)
-- [Configuração](#configuração)
-- [Build e publicação](#build-e-publicação)
-- [Pontos de atenção](#pontos-de-atenção)
-
-## Funcionalidades
-
-- **Duas páginas, hospedagem estática:** início (`index.html`) com seis cartões temáticos e consulta (`indicadores.html`) com o painel e as informações sobre os dados.
-- **Consulta por tema:** cada cartão abre a consulta com o tema escolhido (`indicadores.html?tema=saude`). Um tema desconhecido exibe o panorama geral.
-- **Painel Power BI incorporado:** aceita um relatório geral e, opcionalmente, um relatório por tema, com tela cheia e link para abrir em outra aba. Somente URLs `https` em domínios `powerbi.com` são aceitas; qualquer outro valor é rejeitado com aviso.
-- **Transparência:** seção "Sobre os dados" com fontes, atualização, privacidade e cuidados de interpretação.
-- **Acessibilidade:** link "Pular para o conteúdo", foco visível em todos os elementos interativos, menu que fecha com `Esc` e respeito a `prefers-reduced-motion`.
-- **Sem backend:** não há autenticação, cadastro de indicadores, cookies próprios nem ferramentas de rastreamento.
-
-## Tecnologias
-
-| Camada | Escolha |
-| --- | --- |
-| Interface | React 19, renderizado no cliente |
-| Linguagem | TypeScript 5.9 em modo `strict` |
-| Build | Vite 8 (multipágina, `base: './'`) |
-| Estilos | CSS puro, sem framework |
-| Pacotes | pnpm 10 |
-| Publicação | GitHub Pages, a partir de `docs/` |
-
-## Começando
-
-### Abrir a versão pronta
-
-Baixe em **Code → Download ZIP** e extraia todos os arquivos. Com o Node.js instalado, execute `abrir-site.cmd` no Windows. Em outros sistemas, execute `node scripts/serve.cjs` e acesse http://localhost:4173/.
-
-O servidor usa `dist/` quando disponível e, caso contrário, a versão pronta em `docs/`. Para visualizar o site, não é necessário instalar dependências nem compilar.
-
-### Desenvolver
-
-Requisitos: **Node.js 22.12 ou superior** e **pnpm** (o projeto usa `pnpm-lock.yaml`; com o Corepack, `corepack enable` já seleciona a versão correta).
+Em outros sistemas:
 
 ```sh
-git clone https://github.com/viniruizz05/dossie-da-mulher.git
-cd dossie-da-mulher
+node scripts/serve.cjs
+```
+
+Abra http://localhost:4173/ para o portal e http://localhost:4173/admin.html para a administração.
+
+## Configurar acesso
+
+Execute `configurar-acesso.cmd` no Windows ou:
+
+```sh
+node scripts/create-admin.cjs
+```
+
+Informe o e-mail e uma senha de pelo menos 12 caracteres no terminal. A senha não aparece na tela. Não existe senha padrão nem cadastro público. Para redefinir a senha de uma conta, execute o comando com `--reset`; as sessões anteriores dessa conta serão encerradas. É possível criar contas separadas para os responsáveis.
+
+## Cadastrar e publicar
+
+1. Entre na área administrativa e selecione **Novo indicador**.
+2. Preencha título, tema, unidade e tipo de gráfico (linhas ou barras).
+3. Inclua os registros: período (`AAAA` ou `AAAA-MM`), região, série e valor. A mesma combinação de período, região e série não pode se repetir. Use a mesma unidade em todas as séries e não misture períodos anuais com mensais no mesmo indicador.
+4. Informe a fonte; acrescente link e critérios de leitura quando disponíveis.
+5. Confira a prévia e salve um rascunho ou publique.
+
+Rascunhos são privados. Editar um indicador publicado não altera a versão pública até uma nova publicação. É possível retirar uma publicação e preservar o rascunho ou excluir o indicador. O histórico registra as alterações e seu responsável. Alterações concorrentes são detectadas para evitar sobrescrever a edição de outra pessoa.
+
+A consulta pública permite selecionar tema, pesquisar indicadores, filtrar região e período, ativar séries, consultar valores no gráfico, ler a tabela e baixar CSV. A página verifica novas publicações a cada minuto e ao voltar à janela. Períodos sem registro são lacunas; não são convertidos em zero. Nenhum indicador ou dado fictício é publicado automaticamente.
+
+## Desenvolver e verificar
+
+```sh
 pnpm install
+pnpm serve
+```
+
+Em outro terminal:
+
+```sh
 pnpm dev
 ```
 
-O servidor de desenvolvimento fica em http://localhost:5173/.
+O Vite encaminha `/api` para o servidor em `127.0.0.1:4173`.
 
-## Scripts
-
-| Comando | O que faz |
-| --- | --- |
-| `pnpm dev` | Servidor de desenvolvimento com recarga automática. |
-| `pnpm check` | Verificação de tipos com `tsc --noEmit`. |
-| `pnpm build` | Verifica os tipos e gera o site estático em `dist/`. |
-| `pnpm build:pages` | Executa o build e substitui o conteúdo de `docs/` pelo de `dist/`. |
-| `pnpm preview` | Serve `dist/` com o Vite em http://localhost:4173/. |
-| `pnpm serve` | Serve `dist/` ou, na sua ausência, `docs/`, usando apenas o Node. |
-
-No Windows, o arquivo `abrir-site.cmd` inicia esse servidor local e abre o navegador. Ele exige apenas o Node.js instalado e a pasta `docs/` incluída no download (ou um build em `dist/`).
-
-## Estrutura do projeto
-
-```
-src/
-  main.tsx            ponto de entrada; escolhe a página pelo atributo data-page do HTML
-  App.tsx             estrutura comum (cabeçalho, rodapé) e seleção da página
-  pages/              composição de cada página (HomePage, IndicatorsPage)
-  components/
-    layout/           Brand, Header, Footer
-    home/             seções da página inicial
-    indicators/       painel Power BI, navegação por tema e "Sobre os dados"
-    ui/               componentes de uso geral (Icon)
-  config/site.ts      conteúdo do site, temas e configuração do Power BI
-  lib/                lógica sem interface (validação da URL do Power BI)
-  hooks/              usePageMotion, useScrollToHash
-  styles/             folhas de estilo
-public/               arquivos estáticos copiados para o build
-scripts/              servidor local, abertura do site e publicação em docs/
-docs/                 build publicado no GitHub Pages (gerado; não editar à mão)
+```sh
+pnpm check
+pnpm build
+pnpm test
 ```
 
-## Configuração
+Os testes usam um banco temporário e dados sintéticos, verificando autenticação, proteção de escrita, rascunhos, publicação, persistência, validação, conflitos, retirada e exclusão. Execute o build antes dos testes.
 
-Todo o conteúdo editável fica em [`src/config/site.ts`](src/config/site.ts). Preencha apenas com informações validadas pela equipe responsável.
+## Dados e hospedagem
 
-### Informações do site
+O servidor Node usa SQLite em `data/dossie.sqlite`. Contas, hashes de senha, sessões e indicadores ficam nesse arquivo, fora dos diretórios públicos. `DATA_DIR` permite escolher outro diretório persistente. **Não envie `data/`, arquivos SQLite, senhas ou `.env` ao GitHub.**
 
-| Campo (`siteConfig`) | Uso |
+Para publicação, será necessário um servidor Node 24+ com disco persistente e HTTPS. O GitHub armazena o código; **GitHub Pages sozinho não executa o login nem o banco de dados**. Não use o disco temporário de uma função serverless para esse SQLite. A hospedagem ainda precisa ser definida.
+
+Variáveis de produção:
+
+| Variável | Uso |
 | --- | --- |
-| `source` | Fonte dos dados exibida no painel. |
-| `referencePeriod` | Período de referência dos dados. |
-| `lastUpdated` | Data oficial de atualização dos dados, no formato `AAAA-MM-DD`. Não é a data de publicação do site. |
+| `NODE_ENV=production` | Ativa cookies de sessão Secure e exige origem HTTPS. |
+| `APP_ORIGIN=https://seu-dominio` | Origem pública exata, sem barra final, usada para proteger as gravações. |
+| `HOST=0.0.0.0` | Escuta na interface da hospedagem, atrás de proxy HTTPS. Localmente, o padrão é `127.0.0.1`. |
+| `PORT` | Porta do servidor, padrão 4173. |
+| `DATA_DIR` | Caminho para o volume persistente do banco. |
 
-### Relatório Power BI
+Execute o build e inicie com `pnpm start`. O servidor entrega a interface e a API na mesma origem. Sessões duram oito horas; senhas usam scrypt com salt individual; gravações exigem sessão, origem autorizada e token CSRF. O login limita tentativas por endereço de conexão; atrás de um proxy, a proteção pode agrupar os visitantes no endereço do proxy. Configure limites adicionais na infraestrutura quando a hospedagem for definida.
 
-1. Em `powerBIConfig.embedUrl`, informe a URL HTTPS oficial de incorporação. O relatório substitui automaticamente o estado de preparação.
-2. Opcionalmente, informe uma URL por tema em `powerBIConfig.reportsByTopic`, usando os identificadores abaixo. Sem URL específica, o tema exibe o relatório geral com essa indicação.
+Faça backup da pasta `data/` com o servidor parado, incluindo os arquivos auxiliares SQLite. Restaure no diretório configurado em `DATA_DIR`. Não compartilhe esse backup publicamente. A recuperação de acesso é feita pelo comando de redefinição no servidor; não há envio automático de e-mails.
 
-| Identificador | Tema |
-| --- | --- |
-| `violencia` | Violência e proteção |
-| `saude` | Saúde e cuidado |
-| `educacao` | Educação e trabalho |
-| `territorio` | Território e população |
-| `participacao` | Participação e igualdade |
-| `politicas` | Políticas e atendimento |
+O comando `pnpm build:pages` atualiza os arquivos compilados em `docs/` para distribuição. A aplicação completa deve ser executada pelo servidor Node, mesmo quando os arquivos dessa pasta estiverem disponíveis.
 
-A atualização dos dados é configurada no próprio Power BI, conforme a fonte de origem, e não acontece em tempo real. Quando o relatório geral é usado para um tema, os filtros internos do Power BI é que delimitam a consulta.
+## Estrutura
 
-## Build e publicação
+```text
+src/pages/AdminPage.tsx                    login e edição
+src/components/indicators/                gráficos e consulta pública
+src/lib/data.ts                           cliente da API e exportação CSV
+scripts/serve.cjs                         servidor HTTP
+scripts/api.cjs                           autenticação e publicação
+scripts/database.cjs                      persistência e senhas
+scripts/create-admin.cjs                  criação e recuperação de acesso
+data/                                    dados privados; não versionar
+docs/                                    interface compilada para distribuição
+```
 
-O site é estático e usa caminhos relativos, então funciona tanto na raiz de um servidor quanto em um subcaminho, como o do GitHub Pages.
-
-1. Em **Settings → Pages**, selecione **Deploy from a branch → `main` → `/docs`**.
-2. A cada atualização, execute `pnpm build:pages` e envie as alterações, incluindo a pasta `docs/`.
-
-O comando compila o projeto e recria `docs/` a partir de `dist/`. O arquivo `.nojekyll`, que evita o processamento do Jekyll, vem de `public/`.
-
-## Pontos de atenção
-
-- **`docs/` é versionado:** como o GitHub Pages publica essa pasta, o build fica no repositório. Se `pnpm build:pages` não for executado antes do envio, o site publicado fica defasado em relação ao código.
-- **Fontes tipográficas:** DM Sans e Newsreader são carregadas do Google Fonts, o que gera uma requisição externa a cada visita.
-- **Relatório incorporado:** o conteúdo do Power BI é servido pela Microsoft e segue as políticas dela, inclusive de cookies.
-- **Licença:** o repositório ainda não define uma licença. Consulte a Secretaria da Mulher antes de reutilizar o código ou os materiais.
+Cadastre apenas informações agregadas e validadas. Dados pessoais não devem ser inseridos nos campos livres. As fontes, unidades e critérios são responsabilidade da equipe que publica. O repositório não define licença de reutilização dos materiais.

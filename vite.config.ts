@@ -3,5 +3,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: './',
-  build: { rolldownOptions: { input: ['index.html', 'indicadores.html'] } },
+  server: { proxy: { '/api': 'http://127.0.0.1:4173' } },
+  build: { rolldownOptions: { input: ['index.html', 'indicadores.html', 'admin.html'] } },
 });
