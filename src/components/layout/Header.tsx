@@ -19,6 +19,7 @@ export function Header({ page = 'inicio' }: { page?: 'inicio' | 'indicadores' })
             <a href="./" aria-current={page === 'inicio' ? 'page' : undefined}>Início</a>
             <a href="./#temas">Temas</a>
             <a href="./indicadores.html#metodologia">Sobre os dados</a>
+            <a className="nav-login" href="./admin.html" aria-label="Entrar na área administrativa" title="Acesso da equipe responsável"><Icon name="lock" size={16} />Entrar</a>
             <a className="nav-cta" href="./indicadores.html" aria-current={page === 'indicadores' ? 'page' : undefined}>Indicadores <Icon name="arrow" size={16} /></a>
           </nav>
         </div>
