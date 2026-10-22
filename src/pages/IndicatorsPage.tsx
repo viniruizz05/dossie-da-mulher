@@ -1,6 +1,6 @@
 import { IndicatorNavigation } from '../components/indicators/IndicatorNavigation';
 import { MethodologySection } from '../components/indicators/MethodologySection';
-import { PowerBIDashboard } from '../components/indicators/PowerBIDashboard';
+import { IndicatorsDashboard } from '../components/indicators/IndicatorsDashboard';
 import { Icon } from '../components/ui/Icon';
 import { findTopic } from '../config/site';
 
@@ -20,7 +20,7 @@ export function IndicatorsPage({ topicId }: { topicId?: string }) {
       <div className="consultation-area">
         <div className="container consultation-layout">
           <IndicatorNavigation topicId={selectedTopic?.id} />
-          <div className="consultation-main"><PowerBIDashboard topicId={selectedTopic?.id} /></div>
+          <div className="consultation-main"><IndicatorsDashboard topicId={selectedTopic?.id} /></div>
         </div>
       </div>
       <MethodologySection />
