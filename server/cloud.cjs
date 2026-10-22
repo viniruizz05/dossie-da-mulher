@@ -8,7 +8,11 @@ function configuration() {
   const secret = process.env.SESSION_SECRET;
   const origin = process.env.APP_ORIGIN;
   const test = process.env.NODE_ENV === 'test';
-  if (!url || !key?.startsWith('sb_publishable_') || !secret || secret.length < 43 || /GERAR_UM_SEGREDO/.test(secret) || !origin) fail(503, 'A integração com o banco de dados ainda não foi configurada.');
+  const invalid = [!url && 'SUPABASE_URL', !key?.startsWith('sb_publishable_') && 'SUPABASE_PUBLISHABLE_KEY', (!secret || secret.length < 43 || /GERAR_UM_SEGREDO/.test(secret)) && 'SESSION_SECRET (mínimo 43 caracteres)', !origin && 'APP_ORIGIN'].filter(Boolean);
+  if (invalid.length) {
+    console.error('Cloud configuration missing or invalid:', invalid.join(', '));
+    fail(503, 'A integração com o banco de dados ainda não foi configurada.');
+  }
   try {
     const provider = new URL(url); const site = new URL(origin);
     if (provider.origin !== url || site.origin !== origin) throw Error();
