@@ -2,10 +2,11 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
-const root = path.join(__dirname, '..', 'dist');
+const root = ['dist', 'docs'].map(directory => path.join(__dirname, '..', directory))
+  .find(directory => fs.existsSync(path.join(directory, 'index.html')));
 const port = Number(process.env.PORT || 4173);
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.ico': 'image/x-icon' };
-if(!fs.existsSync(path.join(root,'index.html'))) { console.error('Compile o projeto com pnpm build antes de iniciar.'); process.exit(1); }
+if (!root) { console.error('Site compilado não encontrado. Extraia todos os arquivos do projeto, incluindo a pasta docs, ou execute pnpm install e pnpm build.'); process.exit(1); }
 http.createServer((req,res) => {
   let pathname;
   try { pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); } catch { res.writeHead(400); return res.end('Endereço inválido'); }
