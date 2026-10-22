@@ -1,5 +1,5 @@
 /* Movimento progressivo: sem dependências e sem ocultar conteúdo antes do JavaScript. */
-:root { --motion-ease: cubic-bezier(.2, .7, .25, 1); }
+:root { --motion-ease: cubic-bezier(.2, .7, .25, 1); --motion-fast: .2s; --motion-medium: .32s; --motion-enter: .52s; }
 @media (prefers-reduced-motion: no-preference) {
   .hero-copy .hero-eyebrow { animation: motion-enter .5s var(--motion-ease) both; }
   .hero-copy h1 { animation: motion-enter .7s var(--motion-ease) .08s both; }
