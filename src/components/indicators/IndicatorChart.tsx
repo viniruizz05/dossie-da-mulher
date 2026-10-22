@@ -55,7 +55,7 @@ export function IndicatorChart({ indicator, preview = false }: { indicator: Indi
                   drawing += `${previousPeriod !== null && sequence === previousPeriod + 1 ? 'L' : 'M'} ${x(index)} ${y(p.value)} `;
                   previousPeriod = sequence;
                 }
-                return <g key={name}>{indicator.chartType === 'line' && <path d={drawing} fill="none" stroke={color} strokeWidth="3" className="data-line" />}{periods.map((period, index) => {
+                return <g key={name}>{indicator.chartType === 'line' && <path d={drawing} pathLength={1} fill="none" stroke={color} strokeWidth="3" className="data-line" />}{periods.map((period, index) => {
                   const p = findPoint(period, name); if (!p) return null;
                   const barWidth = Math.min(26, step * .7 / visibleSeries.length);
                   const position = x(index) - visibleSeries.length * barWidth / 2 + seriesIndex * barWidth;
