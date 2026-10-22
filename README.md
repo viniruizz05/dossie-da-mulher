@@ -37,11 +37,19 @@ Portal público de indicadores da **Secretaria da Mulher** da Prefeitura de Itaq
 
 ## Começando
 
+### Abrir a versão pronta
+
+Baixe em **Code → Download ZIP** e extraia todos os arquivos. Com o Node.js instalado, execute `abrir-site.cmd` no Windows. Em outros sistemas, execute `node scripts/serve.cjs` e acesse http://localhost:4173/.
+
+O servidor usa `dist/` quando disponível e, caso contrário, a versão pronta em `docs/`. Para visualizar o site, não é necessário instalar dependências nem compilar.
+
+### Desenvolver
+
 Requisitos: **Node.js 22.12 ou superior** e **pnpm** (o projeto usa `pnpm-lock.yaml`; com o Corepack, `corepack enable` já seleciona a versão correta).
 
 ```sh
-git clone https://github.com/viniruizz05/dossie.git
-cd dossie
+git clone https://github.com/viniruizz05/dossie-da-mulher.git
+cd dossie-da-mulher
 pnpm install
 pnpm dev
 ```
@@ -57,9 +65,9 @@ O servidor de desenvolvimento fica em http://localhost:5173/.
 | `pnpm build` | Verifica os tipos e gera o site estático em `dist/`. |
 | `pnpm build:pages` | Executa o build e substitui o conteúdo de `docs/` pelo de `dist/`. |
 | `pnpm preview` | Serve `dist/` com o Vite em http://localhost:4173/. |
-| `pnpm serve` | Serve `dist/` sem dependências externas, usando apenas o Node. |
+| `pnpm serve` | Serve `dist/` ou, na sua ausência, `docs/`, usando apenas o Node. |
 
-No Windows, o arquivo `abrir-site.cmd` inicia esse servidor local e abre o navegador. Ele exige que o Node.js esteja instalado e que `pnpm build` já tenha sido executado.
+No Windows, o arquivo `abrir-site.cmd` inicia esse servidor local e abre o navegador. Ele exige apenas o Node.js instalado e a pasta `docs/` incluída no download (ou um build em `dist/`).
 
 ## Estrutura do projeto
 
