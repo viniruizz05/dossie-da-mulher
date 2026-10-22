@@ -1,4 +1,9 @@
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.header #navigation>.nav-login { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:10px 15px; border:1px solid #dfd1e6; border-radius:var(--radius-control); color:#684279; background:#fcf9fe; white-space:nowrap; text-decoration:none; }
+.header #navigation>.nav-login:hover { background:#f0e6f6; border-color:#ba9cca; color:#512565; }
+.footer-login { display:inline-flex; align-items:center; gap:7px; text-underline-offset:4px; }
+@media(prefers-reduced-motion:no-preference) { .nav-login { transition:background var(--motion-fast),border-color var(--motion-fast),color var(--motion-fast),transform var(--motion-fast) var(--motion-ease); } .nav-login:active { transform:scale(.98); } }
+@media(max-width:900px) { .header #navigation>.nav-login { justify-content:flex-start; padding:13px 14px; margin-top:6px; } }
 .native-dashboard { min-width:0; }
 .dashboard-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; margin-bottom:22px; }
 .data-overline { font-size:10px; font-weight:700; letter-spacing:1.4px; color:#875894; margin-bottom:8px; }
