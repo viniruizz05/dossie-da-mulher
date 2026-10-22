@@ -7,7 +7,7 @@
 .live-label { display:flex; align-items:center; gap:7px; padding:8px 11px; border:1px solid #ddd1e4; border-radius:30px; font-size:11px; color:#64516f; white-space:nowrap; }
 .live-label>span { width:6px; height:6px; background:#397464; border-radius:50%; }
 .indicator-search { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid #dfd5e5; border-radius:10px; padding:0 14px; min-height:48px; color:#866694; }
-.indicator-search:focus-within { outline:2px solid #9260a5; outline-offset:2px; }
+.indicator-search:focus-within { border-color:#9260a5; outline:2px solid #9260a5; outline-offset:0; }
 .indicator-search input { width:100%; background:none; border:0; outline:0; font:inherit; color:#422b50; font-size:15px; padding:12px 0; }
 .indicator-search input::placeholder { color:#887791; }
 .indicator-cards { display:grid; gap:25px; margin-top:22px; }
@@ -124,6 +124,7 @@
 .admin-list-filters .indicator-search { width:100%; max-width:400px; }
 .admin-list-filters>label:last-child { min-width:200px; }
 .admin-page .indicator-search input { border:0; padding:10px 0; min-height:0; background:none; }
+.admin-page .indicator-search input:focus-visible { outline:0; box-shadow:none; }
 .admin-empty { padding:55px 25px; text-align:center; display:grid; justify-items:center; gap:18px; color:#897194; }
 .admin-empty>svg { color:#9c72ac; }
 .admin-empty h2 { font-size:31px; color:#714b81; }
