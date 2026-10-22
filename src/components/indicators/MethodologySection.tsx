@@ -2,8 +2,8 @@ import { Icon } from '../ui/Icon';
 
 const questions = [
   { id: 'sobre', question: 'Sobre o projeto', answer: 'Portal público da proposta do Dossiê da Mulher Itaquaquecetubense, com foco na violência contra a mulher e na rede de proteção. Os temas e indicadores dependem da validação das bases oficiais.' },
-  { id: 'fontes', question: 'Fontes e metodologia', answer: 'As bases oficiais ainda serão definidas pela equipe. Cada indicador deverá informar fonte, período, unidade de medida e critérios de cálculo.' },
-  { id: 'atualizacao', question: 'Atualização dos dados', answer: 'A atualização será configurada no Power BI conforme a fonte de origem. Não significa atualização em tempo real.' },
+  { id: 'fontes', question: 'Fontes e metodologia', answer: 'Cada gráfico informa sua fonte, unidade de medida e os períodos disponíveis. Os critérios de leitura são apresentados junto ao indicador, quando informados pela equipe responsável.' },
+  { id: 'atualizacao', question: 'Atualização dos dados', answer: 'A equipe responsável cadastra e revisa os dados manualmente. Depois da publicação, a consulta pública recebe a nova versão ao abrir ou atualizar a página e verifica alterações a cada minuto enquanto estiver aberta. A data exibida é a data de publicação; os períodos de referência estão no gráfico.' },
   { id: 'privacidade', question: 'Privacidade e interpretação', answer: 'A proposta é publicar dados agregados, sem identificação de pessoas. Ao comparar períodos ou territórios, considere população, cobertura e diferenças de registro. Mais registros não significam, necessariamente, mais ocorrências.' },
 ];
 
