@@ -8,15 +8,6 @@ export const siteConfig = {
   lastUpdated: '', // Data oficial dos dados em YYYY-MM-DD; não é a data de publicação do site.
 };
 
-export const powerBIConfig = {
-  // URL HTTPS de incorporação fornecida pela equipe do Power BI.
-  // Ao preencher, o relatório substitui automaticamente o estado de preparação.
-  embedUrl: '',
-  // URLs específicas, opcionais. Sem uma URL temática, usa-se o relatório geral.
-  reportsByTopic: {} as Record<string, string>,
-  title: 'Violência e rede de proteção — Dossiê da Mulher Itaquaquecetubense',
-};
-
 // Temas propostos para o relatório. Não representam dados ou indicadores já disponíveis.
 export const topics = [
   { id: 'violencia', number: '01', icon: 'shield', title: 'Violência e proteção', short: 'Violência e proteção', description: 'Violência e rede de proteção.', measures: ['Registros de violência', 'Feminicídios e tentativas', 'Medidas protetivas', 'Atendimentos da rede'], note: 'A leitura deve considerar a subnotificação e as diferenças entre ocorrência, registro e atendimento.' },
