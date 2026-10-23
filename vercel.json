@@ -3,8 +3,11 @@
   "framework": "vite",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist",
-  "functions": { "api/[...path].js": { "maxDuration": 30 } },
-  "rewrites": [{ "source": "/admin", "destination": "/admin.html" }],
+  "functions": { "api/*.js": { "maxDuration": 30 } },
+  "rewrites": [
+    { "source": "/api/admin/:path*", "destination": "/api/admin?__dossie_path=:path*" },
+    { "source": "/admin", "destination": "/admin.html" }
+  ],
   "headers": [{
     "source": "/(.*)",
     "headers": [
