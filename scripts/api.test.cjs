@@ -13,11 +13,13 @@ test('gestão autenticada e publicação persistente, sem dist e sem node_module
   const email = 'teste@example.invalid'; const password = randomBytes(24).toString('hex');
   await setAdministrator(email, password); db.close();
   fs.mkdirSync(path.join(temporary, 'scripts'));
+  fs.mkdirSync(path.join(temporary, 'server'));
+  fs.copyFileSync(path.join(__dirname,'../server/validation.cjs'),path.join(temporary,'server/validation.cjs'));
   for (const name of ['serve.cjs', 'api.cjs', 'database.cjs']) fs.copyFileSync(path.join(__dirname, name), path.join(temporary, 'scripts', name));
   fs.cpSync(path.join(__dirname, '..', 'dist'), path.join(temporary, 'docs'), { recursive: true });
   let server;
   const start = () => new Promise((resolve, reject) => {
-    server = spawn(process.execPath, [path.join(temporary, 'scripts/serve.cjs')], { env: { ...process.env, PORT: '0', NODE_ENV: 'test', APP_ORIGIN: '' }, stdio: ['ignore', 'pipe', 'pipe'] });
+    server = spawn(process.execPath, [path.join(temporary, 'scripts/serve.cjs')], { env: { ...process.env, PORT: '0', NODE_ENV: 'test', APP_ORIGIN: '', SUPABASE_URL: '' }, stdio: ['ignore', 'pipe', 'pipe'] });
     server.once('error', reject); let output = '';
     server.stdout.on('data', chunk => { output += chunk; const found = /localhost:(\d+)/.exec(output); if (found) resolve(`http://127.0.0.1:${found[1]}`); });
     server.once('exit', code => { if (!output) reject(Error('Servidor encerrou com código ' + code)); });

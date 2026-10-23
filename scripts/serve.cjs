@@ -1,7 +1,9 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
-const { handleApi } = require('./api.cjs');
+const { handleApi } = process.env.SUPABASE_URL
+  ? { handleApi: require('../server/cloud.cjs').handleCloudApi }
+  : require('./api.cjs');
 if (process.env.NODE_ENV === 'production' && !/^https:\/\/[^/]+$/.test(process.env.APP_ORIGIN || '')) {
   console.error('Configure APP_ORIGIN com o endereço HTTPS do site, sem barra final.'); process.exit(1);
 }
