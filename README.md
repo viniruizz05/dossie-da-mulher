@@ -61,7 +61,7 @@ Os testes usam bancos temporários, PostgreSQL local com autenticação simulada
 
 ## Dados e hospedagem
 
-A versão em nuvem utiliza Vercel para a interface e API, e Supabase para autenticação e dados. Consulte [DEPLOYMENT.md](DEPLOYMENT.md) para configurar o projeto, autorizar responsáveis e verificar a publicação. A configuração real do Supabase e as verificações no ambiente publicado ainda são necessárias.
+A versão em nuvem utiliza Vercel para a interface e API, e Supabase para autenticação e dados. Consulte [DEPLOYMENT.md](DEPLOYMENT.md) para configurar o projeto, autorizar responsáveis e verificar a publicação. O guia também descreve como reproduzir a configuração em outros ambientes e verificar a publicação.
 
 A API pública entrega somente indicadores publicados. Rascunhos e alterações exigem conta editorial autorizada; as permissões também são verificadas no banco por RLS. Credenciais de demonstração e o banco local não são enviados à nuvem. Cookies de sessão em nuvem duram no máximo uma hora e exigem novo login ao expirar.
 
@@ -84,4 +84,5 @@ docs/                                    interface compilada para distribuição
 ```
 
 Cadastre apenas informações agregadas e validadas. Dados pessoais não devem ser inseridos nos campos livres. As fontes, unidades e critérios são responsabilidade da equipe que publica. O repositório não define licença de reutilização dos materiais.
+
 
