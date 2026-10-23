@@ -22,7 +22,8 @@ test('API cloud: cookies, autenticação verificada, origem, CSRF e falha fechad
     return send(404,{});
   });
   process.env.NODE_ENV='test';process.env.SUPABASE_URL=await listen(mock);process.env.SUPABASE_PUBLISHABLE_KEY='sb_publishable_test';process.env.SESSION_SECRET=randomBytes(32).toString('base64url');
-  const api=http.createServer((req,res)=>void handleCloudApi(req,res,new URL(req.url,'http://localhost').pathname));
+  const {default:adminHandler}=await import('../api/admin.js');
+  const api=http.createServer((req,res)=>void (req.url.startsWith('/api/admin')?adminHandler(req,res):handleCloudApi(req,res,new URL(req.url,'http://localhost').pathname)));
   const base=await listen(api);process.env.APP_ORIGIN=base;
   let cookie='',csrf='';
   const request=async(path,method='GET',data,extra={})=>{const response=await fetch(base+'/api/'+path,{method,headers:{Origin:base,...(data?{'Content-Type':'application/json'}:{}),...(cookie?{Cookie:cookie}:{}),...(csrf?{'X-CSRF-Token':csrf}:{}),...extra},body:data?JSON.stringify(data):undefined});return{response,data:await response.json()};};
@@ -38,6 +39,8 @@ test('API cloud: cookies, autenticação verificada, origem, CSRF e falha fechad
     assert.ok(!JSON.stringify(login.data).includes('editor.token'));assert.ok(!JSON.stringify(login.data).includes('NAO_PODE_SAIR'));
     cookie=setCookie.split(';')[0];csrf=login.data.csrf;
     assert.equal((await request('admin/indicators')).response.status,200);
+    assert.equal((await request('admin?__dossie_path=indicators')).response.status,200);
+    assert.equal((await request('admin?__dossie_path=../login','POST',{})).response.status,404);
     assert.equal((await request('logout','POST',{}, {'X-CSRF-Token':'f'.repeat(64)})).response.status,403);
     assert.equal((await request('logout','POST',{}, {'X-CSRF-Token':'á'.repeat(64)})).response.status,403);
     editorEnabled=false;assert.equal((await request('admin/indicators')).response.status,401);editorEnabled=true;
